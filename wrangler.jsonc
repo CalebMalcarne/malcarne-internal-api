@@ -23,9 +23,14 @@
 			{
 				"class_name": "MyDurableObject",
 				"name": "MY_DURABLE_OBJECT"
+			},
+			{
+				"class_name": "RoundRobin",
+				"name": "ROUND_ROBIN"
 			}
 		]
 	},
+	
 	"observability": {
 		"enabled": true
 	}
