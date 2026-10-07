@@ -43,6 +43,14 @@ class MyDurableObject(DurableObject):
         return f"Hello, {name}!"
 
 """
+ALLOWED_ORIGINS = {
+    "https://asbgold.com",
+    "https://www.asbgold.com",
+
+    # local testing
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+}
 
 PHONE_POOLS = {
     "asb": [
@@ -77,6 +85,24 @@ REP_PHONE = {
     "Shauna Main": "+15613284842",
     "Tals Main": "+15613284884"
 }
+
+def get_cors_headers(request):
+
+    origin = request.headers.get("Origin")
+
+    if origin in ALLOWED_ORIGINS:
+        return {
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Max-Age": "86400",
+            "Vary": "Origin",
+        }
+
+    return {
+        "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+    }
 
 class RoundRobin(DurableObject):
     async def next_index(self, pool_size):
@@ -120,6 +146,17 @@ class Default(WorkerEntrypoint):
         )
 
         # -------------------------------------------
+        # CORS preflight
+        # -------------------------------------------
+        if request.method == "OPTIONS":
+
+            return Response(
+                None,
+                status=204,
+                headers=get_cors_headers(request)
+            )
+
+        # -------------------------------------------
         # API HEALTH
         # -------------------------------------------
 
@@ -161,11 +198,14 @@ class Default(WorkerEntrypoint):
 
             index = await stub.next_index(len(pool))
 
-            return Response.json({
+            return Response.json(
+                {
                 "pool": pool_name,
                 "phone": pool[index],
                 "pool_size": len(pool)
-            })
+                },
+                headers=get_cors_headers(request)
+            )
 
         # -------------------------------------------
         # Site Health

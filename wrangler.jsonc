@@ -11,6 +11,12 @@
 		"python_workers"
 	],
 	
+	"routes": [
+		{
+		"pattern": "api.malcarne.com",
+		"custom_domain": true
+		}
+	],
 	"durable_objects": {
 		"bindings": [
 			{
