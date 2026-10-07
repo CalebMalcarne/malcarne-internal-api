@@ -19,28 +19,30 @@ from workers import WorkerEntrypoint, Response, fetch
  * @typedef {Object} Env
  * @property {DurableObjectNamespace} MY_DURABLE_OBJECT - The Durable Object namespace binding
 """
-
+"""
 # A Durable Object's behavior is defined in an exported Python class
 class MyDurableObject(DurableObject):
-    """
+
      * The constructor is invoked once upon creation of the Durable Object, i.e. the first call to
      * `DurableObjectStub::get` for a given identifier (no-op constructors can be omitted)
      *
      * @param {DurableObjectState} ctx - The interface for interacting with Durable Object state
      * @param {Env} env - The interface to reference bindings declared in wrangler.jsonc
-    """
+
     def __init__(self, ctx, env):
         super().__init__(ctx, env)
 
-    """
+
      * The Durable Object exposes an RPC method `say_hello` which will be invoked when a Durable
      *  Object instance receives a request from a Worker via the same method invocation on the stub
      *
      * @param {string} name - The name provided to a Durable Object instance from a Worker
      * @returns {Promise<string>} The greeting to be sent back to the Worker
-    """
+
     async def say_hello(self, name):
         return f"Hello, {name}!"
+
+"""
 
 PHONE_POOLS = {
     "asb": [
@@ -107,11 +109,9 @@ class Default(WorkerEntrypoint):
         #
         # Requests from all Workers to the Durable Object instance named "foo"
         # will go to a single remote Durable Object instance.
-        stub = self.env.MY_DURABLE_OBJECT.getByName("foo")
 
         # Call the `say_hello()` RPC method on the stub to invoke the method on
         # the remote Durable Object instance.
-        greeting = await stub.say_hello("world")
 
         url = urlparse(request.url)
 
