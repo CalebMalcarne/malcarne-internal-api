@@ -238,6 +238,125 @@ class Default(WorkerEntrypoint):
                         "ok": site_response_malCorp.ok
                     }
                 })
+            elif path_parts[3] == "asbgold":
+                site_response_asb = await fetch(
+                    "https://asbgold.com/",
+                    method="HEAD"
+                )
+
+                site_response_asbCorp = await fetch(
+                    "https://asbgoldcorporation.com/",
+                    method="HEAD"
+                )
+
+                site_response_aiwrecked = await fetch(
+                    "https://aiwrecked.com/",
+                    method="HEAD"
+                )
+
+                site_response_aiwreckedworld = await fetch(
+                    "https://aiwreckedworld.com/",
+                    method="HEAD"
+                )
+
+                site_response_scarcityofsilverguide = await fetch(
+                    "https://scarcityofsilverguide.com/",
+                    method="HEAD"
+                )
+
+                site_response_scarcityofsilveroffer = await fetch(
+                    "https://scarcityofsilveroffer.com/",
+                    method="HEAD"
+                )
+                site_response_scarcityofsilverreport = await fetch(
+                    "https://scarcityofsilverreport.com/",
+                    method="HEAD"
+                )
+
+                site_response_scarcityofsilveroffer = await fetch(
+                    "https://scarcityofsilveroffer.com/",
+                    method="HEAD"
+                )
+                site_response_asbwelcome = await fetch(
+                    "https://asbwelcome.com/",
+                    method="HEAD"
+                )
+                site_response_kudlowsgold = await fetch(
+                    "https://kudlowsgold.com/",
+                    method="HEAD"
+                )
+                site_response_larrykudlowsgold = await fetch(
+                    "https://larrykudlowsgold.com/",
+                    method="HEAD"
+                )
+                site_response_defendwithgold = await fetch(
+                    "https://defendwithgold.com/",
+                    method="HEAD"
+                )
+
+                site_response_dollarsdeath = await fetch(
+                    "https://dollarsdeath.com/",
+                    method="HEAD"
+                )
+                site_response_asbgoldguide = await fetch(
+                    "https://asbgoldguide.com/",
+                    method="HEAD"
+                )
+
+                return Response.json({
+                    "asbgold": {
+                        "status": site_response_asb.status,
+                        "ok": site_response_asb.ok
+                    },
+                    "asbgoldcorporation": {
+                        "status": site_response_asbCorp.status,
+                        "ok": site_response_asbCorp.ok
+                    },
+                    "aiwrecked": {
+                        "status": site_response_aiwrecked.status,
+                        "ok": site_response_aiwrecked.ok
+                    },
+                    "aiwreckedworld": {
+                        "status": site_response_aiwreckedworld.status,
+                        "ok": site_response_aiwreckedworld.ok
+                    },
+                    "scarcityofsilverguide": {
+                        "status": site_response_scarcityofsilverguide.status,
+                        "ok": site_response_scarcityofsilverguide.ok
+                    },
+                    "scarcityofsilveroffer": {
+                        "status": site_response_scarcityofsilveroffer.status,
+                        "ok": site_response_scarcityofsilveroffer.ok
+                    },
+                    "scarcityofsilverreport": {
+                        "status": site_response_scarcityofsilverreport.status,
+                        "ok": site_response_scarcityofsilverreport.ok
+                    }, 
+                    "asbwelcome": {
+                        "status": site_response_asbwelcome.status,
+                        "ok": site_response_asbwelcome.ok
+                    },
+                    "kudlowsgold": {
+                        "status": site_response_kudlowsgold.status,
+                        "ok": site_response_kudlowsgold.ok
+                    },
+                    "larrykudlowsgold": {
+                        "status": site_response_larrykudlowsgold.status,
+                        "ok": site_response_larrykudlowsgold.ok
+                    },
+                    "defendwithgold": {
+                        "status": site_response_defendwithgold.status,
+                        "ok": site_response_defendwithgold.ok
+                    },
+                    "larrykudlowsgold": {
+                        "status": site_response_dollarsdeath.status,
+                        "ok": site_response_larrykudlowsgold.ok
+                    },
+                    "defendwithgold": {
+                        "status": site_response_asbgoldguide.status,
+                        "ok": site_response_defendwithgold.ok
+                    }
+                })
                 
 
         # -------------------------------------------
