@@ -46,6 +46,9 @@ class MyDurableObject(DurableObject):
 ALLOWED_ORIGINS = {
     "https://asbgold.com",
     "https://www.asbgold.com",
+    "https://aiwrecked.com",
+    "https://www.aiwreckedworld.com",
+
 
     # local testing
     "http://localhost:8000",
